@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>YouTube Style Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Roboto", sans-serif;
+      background-color: #181818;
+      color: #fff;
+    }
+
+    .container {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .top-right {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .top-right a {
+      background-color: #fff;
+      color: #000;
+      text-decoration: none;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      display: inline-block;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .top-right a:hover {
+      background-color: #e5e5e5;
+    }
+
+    button, input[type="date"], select {
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 14px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      background-color: #e5e5e5;
+      cursor: pointer;
+    }
+
+    .main-content {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      min-width: 250px;
+      align-items: flex-start;
+    }
+
+    select {
+      width: 280px; /* Увеличенная ширина */
+    }
+
+    select[multiple] {
+      height: 180px; /* Немного увеличенная высота */
+    }
+
+    .date-selection {
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .date-selection input[type="date"],
+    .date-selection button {
+      font-size: 15px;
+      padding: 10px 14px;
+    }
+
+    .date-selection input[type="date"] {
+      width: 180px;
+    }
+
+    .right-panel {
+      flex: 1;
+      max-width: 500px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 8px;
+      background-color: #202020;
+    }
+
+    .right-panel label {
+      display: block;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .checkbox-option {
+      background-color: #2a2a2a;
+      padding: 10px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+
+    input[type="checkbox"] {
+      accent-color: red;
+      width: 16px;
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="top-right">
+    <a href="/login">Add Account</a>
+  </div>
+
+  <div class="main-content">
+    <div class="left-panel">
+      <div>
+        <label for="accounts"><b>Select Accounts:</b></label><br>
+        <select id="accounts" name="accounts" multiple>
+          {% for account in accounts %}
+          <option value="{{account}}">{{account}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="date-selection">
+        <div>
+          <label for="start-date">Start Date:</label><br>
+          <input type="date" id="start-date" name="start-date" />
+        </div>
+        <div>
+          <label for="end-date">End Date:</label><br>
+          <input type="date" id="end-date" name="end-date" />
+        </div>
+        <button type="button">1 week</button>
+        <button type="button">1 month</button>
+      </div>
+    </div>
+
+    <div class="right-panel">
+      <label><b>Select Options:</b></label>
+      <div class="checkbox-grid">
+        <label class="checkbox-option"><input type="checkbox" name="option" value="1" />Option 1</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="2" />Option 2</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="3" />Option 3</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="4" />Option 4</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="5" />Option 5</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="6" />Option 6</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="7" />Option 7</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="8" />Option 8</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="9" />Option 9</label>
+        <label class="checkbox-option"><input type="checkbox" name="option" value="10" />Option 10</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+
+
