@@ -45,6 +45,7 @@ def token_handler():
         "channel_id": channel_id,
         "token": token
     }
+    print(storage.token_storage)
     return redirect("/")
 
 

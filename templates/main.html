@@ -71,11 +71,11 @@
     }
 
     select {
-      width: 280px; /* Увеличенная ширина */
+      width: 280px;
     }
 
     select[multiple] {
-      height: 180px; /* Немного увеличенная высота */
+      height: 180px;
     }
 
     .date-selection {
@@ -85,13 +85,9 @@
       flex-wrap: wrap;
     }
 
-    .date-selection input[type="date"],
-    .date-selection button {
+    .date-selection input[type="date"] {
       font-size: 15px;
       padding: 10px 14px;
-    }
-
-    .date-selection input[type="date"] {
       width: 180px;
     }
 
@@ -131,6 +127,17 @@
       width: 16px;
       height: 16px;
     }
+
+    .submit-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .submit-container button {
+      font-size: 16px;
+      padding: 12px 24px;
+    }
   </style>
 </head>
 <body>
@@ -160,30 +167,63 @@
           <label for="end-date">End Date:</label><br>
           <input type="date" id="end-date" name="end-date" />
         </div>
-        <button type="button">1 week</button>
-        <button type="button">1 month</button>
       </div>
     </div>
 
-    <div class="right-panel">
-      <label><b>Select Options:</b></label>
-      <div class="checkbox-grid">
-        <label class="checkbox-option"><input type="checkbox" name="option" value="1" />Option 1</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="2" />Option 2</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="3" />Option 3</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="4" />Option 4</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="5" />Option 5</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="6" />Option 6</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="7" />Option 7</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="8" />Option 8</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="9" />Option 9</label>
-        <label class="checkbox-option"><input type="checkbox" name="option" value="10" />Option 10</label>
-      </div>
+    <div class="checkbox-grid">
+  <label class="checkbox-option" title="Total number of views">
+    <input type="checkbox" name="option" value="views" />
+    <span style="font-weight: 500;">Views</span>
+  </label>
+  <label class="checkbox-option" title="Average time viewers spent watching the video">
+    <input type="checkbox" name="option" value="averageViewDuration" />
+    <span style="font-weight: 500;">Average View Duration</span>
+  </label>
+  <label class="checkbox-option" title="Click-through rate of annotations">
+    <input type="checkbox" name="option" value="annotationClickThroughRate" />
+    <span style="font-weight: 500;">Annotation CTR</span>
+  </label>
+  <label class="checkbox-option" title="Number of likes">
+    <input type="checkbox" name="option" value="likes" />
+    <span style="font-weight: 500;">Likes</span>
+  </label>
+  <label class="checkbox-option" title="Number of dislikes">
+    <input type="checkbox" name="option" value="dislikes" />
+    <span style="font-weight: 500;">Dislikes</span>
+  </label>
+  <label class="checkbox-option" title="Percentage of video watched on average">
+    <input type="checkbox" name="option" value="averageViewPercentage" />
+    <span style="font-weight: 500;">Average View %</span>
+  </label>
+  <label class="checkbox-option" title="Subscribers gained during the selected period">
+    <input type="checkbox" name="option" value="subscribersGained" />
+    <span style="font-weight: 500;">Subscribers Gained</span>
+  </label>
+  <label class="checkbox-option" title="Subscribers lost during the selected period">
+    <input type="checkbox" name="option" value="subscribersLost" />
+    <span style="font-weight: 500;">Subscribers Lost</span>
+  </label>
+  <label class="checkbox-option" title="Number of comments">
+    <input type="checkbox" name="option" value="comments" />
+    <span style="font-weight: 500;">Comments</span>
+  </label>
+  <label class="checkbox-option" title="Viewer retention percentage">
+    <input type="checkbox" name="option" value="viewerPercentage" />
+    <span style="font-weight: 500;">Viewer %</span>
+  </label>
+</div>
+
+
     </div>
+  </div>
+
+  <div class="submit-container">
+    <button type="submit">Submit</button>
   </div>
 </div>
 
 </body>
 </html>
+
 
 
