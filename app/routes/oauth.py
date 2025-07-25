@@ -20,7 +20,6 @@ scopes = " ".join([
 ])
 google_oauth_page = f"{auth_uri}?client_id={client_id}&redirect_uri={redirect_uris[0]}&response_type=code&scope={scopes}"
 
-print(google_oauth_page)
 @router.route("/login")
 def login():
 
@@ -45,7 +44,6 @@ def token_handler():
         "channel_id": channel_id,
         "token": token
     }
-    print(storage.token_storage)
     return redirect("/")
 
 

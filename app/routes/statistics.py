@@ -14,4 +14,7 @@ def form_handler():
     token = token_storage[accounts]["token"]
     channel_id = token_storage[accounts]["channel_id"]
     analytics = request_analytics(token, channel_id, metrics, start_date, end_date)
-    return transform_analytic_response(analytics)
+    data = transform_analytic_response(analytics)
+    headers = data[0]
+    rows = data[1:]
+    return render_template("table.html", headers=headers, rows=rows)
