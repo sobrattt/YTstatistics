@@ -7,6 +7,17 @@ def get_credentials():
     file.close()
     return credentials
 
+def transform_analytic_response(statistics):
+
+    header_names = []
+    for name in statistics["columnHeaders"]:
+        name = name.get("name")
+        header_names.append(name)
+    rows = statistics["rows"]
+    rows.insert(0, header_names)
+    return rows
+
+
 
 
 
