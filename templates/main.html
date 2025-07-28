@@ -2,227 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YouTube Style Dashboard</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: "Roboto", sans-serif;
-      background-color: #181818;
-      color: #fff;
-    }
-
-    .container {
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .top-right {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .top-right a {
-      background-color: #fff;
-      color: #000;
-      text-decoration: none;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      display: inline-block;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    .top-right a:hover {
-      background-color: #e5e5e5;
-    }
-
-    button, input[type="date"], select {
-      background-color: #fff;
-      color: #000;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 14px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    button:hover {
-      background-color: #e5e5e5;
-      cursor: pointer;
-    }
-
-    .main-content {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .left-panel {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      min-width: 250px;
-      align-items: flex-start;
-    }
-
-    select {
-      width: 280px;
-    }
-
-    select[multiple] {
-      height: 180px;
-    }
-
-    .date-selection {
-      display: flex;
-      align-items: flex-end;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .date-selection input[type="date"] {
-      font-size: 15px;
-      padding: 10px 14px;
-      width: 180px;
-    }
-
-    .right-panel {
-      flex: 1;
-      max-width: 500px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 8px;
-      background-color: #202020;
-    }
-
-    .right-panel label {
-      display: block;
-      margin-bottom: 10px;
-      font-weight: bold;
-    }
-
-    .checkbox-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-
-    .checkbox-option {
-      background-color: #2a2a2a;
-      padding: 10px;
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-    }
-
-    input[type="checkbox"] {
-      accent-color: red;
-      width: 16px;
-      height: 16px;
-    }
-
-    .submit-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-    }
-
-    .submit-container button {
-      font-size: 16px;
-      padding: 12px 24px;
-    }
-  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white font-sans">
 
-<div class="container">
-  <div class="top-right">
-    <a href="/login">Add Account</a>
+  <div class="p-6 space-y-6">
+
+    <div class="flex justify-end">
+      <a href="/login" class="bg-white text-black text-sm font-medium px-4 py-2 rounded shadow hover:bg-gray-200 transition">
+        Add Account
+      </a>
+    </div>
+
+    <form method="POST" action="/statistics">
+      <div class="flex flex-wrap gap-8 justify-center">
+
+        <div class="flex flex-col gap-6 min-w-[250px]">
+          <div>
+            <label for="accounts" class="block font-bold mb-1">Select Accounts:</label>
+            <select id="accounts" name="accounts" class="w-72 p-2 rounded bg-white text-black shadow">
+              {% for account in accounts %}
+              <option value="{{account}}">{{account}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="flex flex-wrap gap-4">
+            <div>
+              <label for="start-date" class="block font-bold mb-1">Start Date:</label>
+              <input type="date" id="start-date" name="start_date" class="w-44 p-2 rounded bg-white text-black shadow" />
+            </div>
+            <div>
+              <label for="end-date" class="block font-bold mb-1">End Date:</label>
+              <input type="date" id="end-date" name="end_date" class="w-44 p-2 rounded bg-white text-black shadow" />
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-lg shadow-lg max-w-4xl w-full">
+          <label class="block font-bold mb-4">Select Metrics:</label>
+          <div class="grid grid-cols-2 gap-4">
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="views" class="w-4 h-4 text-red-500" />
+              <span>Views</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="averageViewDuration" class="w-4 h-4 text-red-500" />
+              <span>Average View Duration</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="annotationClickThroughRate" class="w-4 h-4 text-red-500" />
+              <span>Annotation CTR</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="likes" class="w-4 h-4 text-red-500" />
+              <span>Likes</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="dislikes" class="w-4 h-4 text-red-500" />
+              <span>Dislikes</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="averageViewPercentage" class="w-4 h-4 text-red-500" />
+              <span>Average View %</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="subscribersGained" class="w-4 h-4 text-red-500" />
+              <span>Subscribers Gained</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow">
+              <input type="checkbox" name="option" value="subscribersLost" class="w-4 h-4 text-red-500" />
+              <span>Subscribers Lost</span>
+            </label>
+            <label class="flex items-center gap-3 bg-gray-700 p-3 rounded shadow col-span-2">
+              <input type="checkbox" name="option" value="comments" class="w-4 h-4 text-red-500" />
+              <span>Comments</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <button type="submit" class="bg-white text-black font-semibold px-6 py-3 rounded shadow hover:bg-gray-200 transition">
+          Submit
+        </button>
+      </div>
+    </form>
   </div>
-
-  <form method="POST" action="/statistics">
-    <div class="main-content">
-      <div class="left-panel">
-        <div>
-          <label for="accounts"><b>Select Accounts:</b></label><br>
-          <select id="accounts" name="accounts">
-            {% for account in accounts %}
-            <option value="{{account}}">{{account}}</option>
-            {% endfor %}
-          </select>
-        </div>
-
-        <div class="date-selection">
-          <div>
-            <label for="start-date">Start Date:</label><br>
-            <input type="date" id="start-date" name="start_date" />
-          </div>
-          <div>
-            <label for="end-date">End Date:</label><br>
-            <input type="date" id="end-date" name="end_date" />
-          </div>
-        </div>
-      </div>
-
-      <div class="checkbox-grid">
-        <label class="checkbox-option" title="Total number of views">
-          <input type="checkbox" name="option" value="views" />
-          <span style="font-weight: 500;">Views</span>
-        </label>
-        <label class="checkbox-option" title="Average time viewers spent watching the video">
-          <input type="checkbox" name="option" value="averageViewDuration" />
-          <span style="font-weight: 500;">Average View Duration</span>
-        </label>
-        <label class="checkbox-option" title="Click-through rate of annotations">
-          <input type="checkbox" name="option" value="annotationClickThroughRate" />
-          <span style="font-weight: 500;">Annotation CTR</span>
-        </label>
-        <label class="checkbox-option" title="Number of likes">
-          <input type="checkbox" name="option" value="likes" />
-          <span style="font-weight: 500;">Likes</span>
-        </label>
-        <label class="checkbox-option" title="Number of dislikes">
-          <input type="checkbox" name="option" value="dislikes" />
-          <span style="font-weight: 500;">Dislikes</span>
-        </label>
-        <label class="checkbox-option" title="Percentage of video watched on average">
-          <input type="checkbox" name="option" value="averageViewPercentage" />
-          <span style="font-weight: 500;">Average View %</span>
-        </label>
-        <label class="checkbox-option" title="Subscribers gained during the selected period">
-          <input type="checkbox" name="option" value="subscribersGained" />
-          <span style="font-weight: 500;">Subscribers Gained</span>
-        </label>
-        <label class="checkbox-option" title="Subscribers lost during the selected period">
-          <input type="checkbox" name="option" value="subscribersLost" />
-          <span style="font-weight: 500;">Subscribers Lost</span>
-        </label>
-        <label class="checkbox-option" title="Number of comments">
-          <input type="checkbox" name="option" value="comments" />
-          <span style="font-weight: 500;">Comments</span>
-        </label>
-        <label class="checkbox-option" title="Viewer retention percentage">
-          <input type="checkbox" name="option" value="viewerPercentage" />
-          <span style="font-weight: 500;">Viewer %</span>
-        </label>
-      </div>
-    </div>
-
-    <div class="submit-container">
-      <button type="submit">Submit</button>
-    </div>
-  </form>
-</div>
 
 </body>
 </html>
+
 
 
 
