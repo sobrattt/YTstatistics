@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Video Analytics Table</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 py-10">
+    <div class="w-full px-6">
+        <div class="w-full bg-white p-8 rounded-xl shadow-lg overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200 text-sm text-gray-800 table-auto">
+                <caption class="text-xl font-semibold text-left mb-4">Video Analytics</caption>
+                <thead class="bg-gray-100 text-xs text-gray-600 uppercase">
+                    <tr>
+                        {% for header in headers %}
+                            <th class="px-4 py-3 text-left whitespace-nowrap">{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    {% for row in rows %}
+                        <tr class="hover:bg-gray-50">
+                            {% for cell in row %}
+                                <td class="px-4 py-2 whitespace-nowrap">
+                                    {{ cell|round(2) if cell is number else cell }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot class="bg-gray-50 font-medium text-gray-900 border-t border-gray-300">
+                    <tr>
+                        {% for avg in averages %}
+                            <td class="px-4 py-2 whitespace-nowrap">
+                                {{ avg|round(2) if avg is number else avg }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
