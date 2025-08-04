@@ -45,6 +45,13 @@ def get_time_gaps():
     end_date_last_week = end_date_last_week.strftime("%Y-%m-%d")
     return [start_date_current_week, end_date_current_week, start_date_last_week, end_date_last_week]
 
+def calculate_averages(current, last):
+    averages = ["difference"]
+    for c, l in zip(current, last):
+        averages.append(l - c)
+    return averages
+
+
 
 
 

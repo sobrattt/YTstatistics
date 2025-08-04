@@ -18,25 +18,29 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
-                    {% for row in rows %}
                         <tr class="hover:bg-gray-50">
-                            {% for cell in row %}
+                            {% for cell in averages_1 %}
                                 <td class="px-4 py-2 whitespace-nowrap">
                                     {{ cell|round(2) if cell is number else cell }}
                                 </td>
                             {% endfor %}
                         </tr>
-                    {% endfor %}
+                        <tr class="hover:bg-gray-50">
+                            {% for cell in averages_2 %}
+                                <td class="px-4 py-2 whitespace-nowrap">
+                                    {{ cell|round(2) if cell is number else cell }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                        <tr class="hover:bg-gray-50">
+                            {% for cell in difference %}
+                                <td class="px-4 py-2 whitespace-nowrap">
+                                    {{ cell|round(2) if cell is number else cell }}
+                                </td>
+                            {% endfor %}
+                        </tr>
                 </tbody>
-                <tfoot class="bg-gray-50 font-medium text-gray-900 border-t border-gray-300">
-                    <tr>
-                        {% for avg in averages %}
-                            <td class="px-4 py-2 whitespace-nowrap">
-                                {{ avg|round(2) if avg is number else avg }}
-                            </td>
-                        {% endfor %}
-                    </tr>
-                </tfoot>
+
             </table>
         </div>
     </div>
