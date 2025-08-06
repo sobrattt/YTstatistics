@@ -18,7 +18,7 @@ YouTubeStatistics is a Python script that automates the process of collecting an
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/YouTubeStatistics.git
+   git clone https://github.com/sobrattt/YouTubeStatistics.git
    cd YouTubeStatistics
    ```
 
