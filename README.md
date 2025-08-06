@@ -69,13 +69,7 @@ YouTubeStatistics is a Python script that automates the process of collecting an
 5. Specify a start and end date.
 6. Select the desired metrics to retrieve analytics data.
 
-## Access
 
-This project is currently in testing and access is restricted.
-
-To request access, contact:
-
-**gvazuk@gmail.com**
 
 
 
